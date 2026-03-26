@@ -9,6 +9,7 @@ TagManager:
   - Exit
   - Spawn
   - Checkpoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
