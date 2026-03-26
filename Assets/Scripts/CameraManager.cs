@@ -28,7 +28,6 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         xValue = xRotate;
         yValue = yRotate;
     }
@@ -51,6 +50,5 @@ public class CameraManager : MonoBehaviour
         transform.rotation = Quaternion.Euler(xValue, yValue, 0);
         orientation.rotation = Quaternion.Euler(0, yValue, 0);
         playerBody.rotation = Quaternion.Euler(0, yValue, 0);
-
     }
 }

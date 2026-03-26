@@ -12,7 +12,7 @@ public class KillController : MonoBehaviour
     /// <summary>
     /// Called when this object collides with another object
     /// </summary>
-    /// <param name="collision">Collision data from Unity</param>
+    /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
