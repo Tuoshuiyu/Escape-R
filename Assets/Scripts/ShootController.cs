@@ -19,7 +19,7 @@ public class ShootController : MonoBehaviour
     [SerializeField] private float destroyTimeBullet;
     private InputAction shoot;
 
-    private List<GameObject> spawnedBullets = new List<GameObject>();
+    [SerializeField] private List<GameObject> spawnedBullets = new List<GameObject>();
 
     /// <summary>
     /// Sets the shoot with the unity inputSystem
@@ -28,14 +28,7 @@ public class ShootController : MonoBehaviour
     {
         shoot = InputSystem.actions.FindAction("Attack");
         shoot.performed += ShootPerformed;
-        //shoot.canceled += ShootCanceled;
     }
-
-    /*private void ShootCanceled(InputAction.CallbackContext obj)
-    {
-        throw new NotImplementedException();
-    }
-    */
 
     /// <summary>
     /// Called when the fire input is triggered
@@ -44,7 +37,6 @@ public class ShootController : MonoBehaviour
     private void ShootPerformed(InputAction.CallbackContext obj)
     {
         Fire();
-        DestroyBullet();
     }
 
     /// <summary>
@@ -64,14 +56,13 @@ public class ShootController : MonoBehaviour
         // Get Rigidbody and apply force
         Rigidbody rb = newBullet.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * shootForce, ForceMode.Impulse);
+        StartCoroutine(DestroyBullet(newBullet));
     }
 
-    IEnumerator DestroyBullet()
+    IEnumerator DestroyBullet(GameObject newBullet)
     {
-        foreach (GameObject bullet in spawnedBullets)
-        {
-            yield return new WaitForSeconds(destroyTimeBullet);
-            Destroy(bullet);
-        }
+        yield return new WaitForSeconds(destroyTimeBullet);
+        spawnedBullets.Remove(newBullet);
+        Destroy(newBullet);
     }
 }
