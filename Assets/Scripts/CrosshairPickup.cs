@@ -3,8 +3,8 @@
 // Author : Darryn C. Gorman
 // Creation Date : March 30, 2026
 //
-// Brief Description : Detects GameObjects with the Pickup tag using raycast and allows the player to pick them up
-                       drop them with the input system and moves smoothly in front of the player 
+// Brief Description : Detects GameObjects with the "Pickup" tag using raycast and allows the player to pick them up
+                       drop them with the input system, and moves smoothly in front of the player 
 **********************************************************************************************************************/
 using System;
 using UnityEngine;
@@ -15,27 +15,15 @@ public class CrosshairPickup : MonoBehaviour
 {
     [SerializeField] private float range;
     [SerializeField] private Image crosshair;
-
-    // Where object is held
     [SerializeField] private Transform holdPoint;
-
-    // Movement settings
-    [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float rotateSpeed = 100f;
-    [SerializeField] private float followForce = 500f;
 
     //Default and when on target color
     private Color normalColor = Color.white;
     private Color pickupColor = Color.green;
 
     private InputAction pickup;
-
-    // Stores currently held object
     private GameObject heldObject;
-    private Rigidbody heldRb;
-
-    // Offset from hold point
-    private Vector3 holdOffset = Vector3.zero;
+    private GameObject currentPickup;
 
     /// <summary>
     /// Assigns the InputSystem at the start of the game 
@@ -47,120 +35,97 @@ public class CrosshairPickup : MonoBehaviour
     }
 
     /// <summary>
-    /// Calls functions once per frame 
+    /// Calls the DetectPickup() function once per frame 
     /// </summary>
     void Update()
     {
         DetectPickup();
-        HandleHeldObject();
     }
 
+    #region Pickup Functions
     /// <summary>
     /// Called when Input is pressed and checks if holding to drop or if not holding to pickup
     /// </summary>
+    /// <param name="obj"></param>
     private void PickupPerformed(InputAction.CallbackContext obj)
     {
         if (heldObject != null)
         {
             DropObject();
+            return;
         }
-        else
+
+        if (currentPickup != null)
         {
-            TryPickup();
+            PickUpObject(currentPickup);
         }
     }
 
     /// <summary>
-    /// Attempts to pick up an object using a raycast
+    /// Picks up the pbjecy and turns the collider off
     /// </summary>
-    private void TryPickup()
+    /// <param name="obj"></param>
+    private void PickUpObject(GameObject obj)
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
+        heldObject = obj;
+        Rigidbody rb = heldObject.GetComponent<Rigidbody>();
 
-        if (Physics.Raycast(ray, out hit, range))
+        if (rb != null)
         {
-            if (hit.collider.CompareTag("Pickup"))
-            {
-                heldObject = hit.collider.gameObject;
-                heldRb = heldObject.GetComponent<Rigidbody>();
-
-                if (heldRb != null)
-                {
-                    // Disable gravity for smoother holding
-                    heldRb.useGravity = false;
-                    heldRb.linearDamping = 10f;
-                }
-
-                // Reset offset when picked up
-                holdOffset = Vector3.zero;
-            }
+            rb.isKinematic = true;
         }
+
+        Collider col = heldObject.GetComponent<Collider>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
+
+        heldObject.transform.SetParent(holdPoint);
+        
     }
 
     /// <summary>
-    /// Drops the currently held object
+    /// Drops the object and turns the collider back on 
     /// </summary>
     private void DropObject()
     {
-        if (heldRb != null)
+        Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+        if (rb != null)
         {
-            heldRb.useGravity = true;
-            heldRb.linearDamping = 0f;
+            rb.isKinematic = false;
         }
 
+        Collider col = heldObject.GetComponent<Collider>();
+        if (col != null)
+        {
+            col.enabled = true;
+        }
+
+        heldObject.transform.SetParent(null);
         heldObject = null;
-        heldRb = null;
     }
 
     /// <summary>
-    /// Handles movement, rotation, and physics-based following of held object
-    /// </summary>
-    private void HandleHeldObject()
-    {
-        if (heldObject != null && heldRb != null)
-        {
-            // Move offset up/down
-            if (Keyboard.current.qKey.isPressed)
-            {
-                holdOffset += Vector3.up * moveSpeed * Time.deltaTime;
-            }
-
-            if (Keyboard.current.eKey.isPressed)
-            {
-                holdOffset += Vector3.down * moveSpeed * Time.deltaTime;
-            }
-
-            // Rotate object with mouse
-            float mouseX = Mouse.current.delta.x.ReadValue() * rotateSpeed * Time.deltaTime;
-            heldObject.transform.Rotate(Vector3.up, mouseX);
-
-            // Target position using offset
-            Vector3 targetPos = holdPoint.position + holdOffset;
-
-            // Apply physics force to move object smoothly
-            Vector3 direction = targetPos - heldObject.transform.position;
-            heldRb.AddForce(direction * followForce * Time.deltaTime);
-        }
-    }
-
-    /// <summary>
-    /// Shoots a raycast forward to check for pickup objects
+    /// Shoots a raycast forward in the middle of the screen to check for objects that can be picked up 
     /// </summary>
     private void DetectPickup()
     {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
-
+        currentPickup = null;
         crosshair.color = normalColor;
 
         if (Physics.Raycast(ray, out hit, range))
         {
             if (hit.collider.CompareTag("Pickup"))
             {
-                Debug.Log("Looking at a Pickup!");
                 crosshair.color = pickupColor;
+                currentPickup = hit.collider.gameObject;
             }
         }
     }
+    #endregion
+
 }
+
