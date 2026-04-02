@@ -9,6 +9,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.UI;
 using UnityEngine.UI;
 
 public class CrosshairPickup : MonoBehaviour
@@ -76,13 +77,15 @@ public class CrosshairPickup : MonoBehaviour
         }
 
         Collider col = heldObject.GetComponent<Collider>();
+
         if (col != null)
         {
             col.enabled = false;
         }
 
         heldObject.transform.SetParent(holdPoint);
-        
+        /*heldObject.transform.localPosition = new Vector3(holdPoint.transform.localPosition.y *
+            heldObject.transform.localPosition.x, holdPoint.transform.localPosition.z * Time.deltaTime);*/
     }
 
     /// <summary>

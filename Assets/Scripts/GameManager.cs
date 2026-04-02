@@ -33,13 +33,7 @@ public class GameManager : MonoBehaviour
     /// <param name="obj"></param>
     private void ExitPerformed(InputAction.CallbackContext obj)
     {
-#if UNITY_EDITOR
-        //exits the Game Editor in unity
-        EditorApplication.isPlaying = false;
-#else
-        //Quits when in a build
         Application.Quit();
-#endif
     }
 
 
