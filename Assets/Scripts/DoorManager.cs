@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class DoorManager : MonoBehaviour
 {
     /// <summary>
-    /// Loads scene when collide with the door with the player
+    /// Loads scene when collide with the door with the player | and show c
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
@@ -19,7 +19,9 @@ public class DoorManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             SceneManager.LoadScene(0);
-            Debug.Log("Entered Door");
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            
         }
     }
 }
