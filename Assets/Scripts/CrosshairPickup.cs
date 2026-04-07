@@ -6,10 +6,8 @@
 // Brief Description : Detects GameObjects with the "Pickup" tag using raycast and allows the player to pick them up
                        drop them with the input system, and moves smoothly in front of the player 
 **********************************************************************************************************************/
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.UI;
 using UnityEngine.UI;
 
 public class CrosshairPickup : MonoBehaviour
@@ -18,7 +16,7 @@ public class CrosshairPickup : MonoBehaviour
     [SerializeField] private Image crosshair;
     [SerializeField] private Transform holdPoint;
 
-    //Default and when on target color
+    //Default and when looking at target color
     private Color normalColor = Color.white;
     private Color pickupColor = Color.green;
 
@@ -84,8 +82,6 @@ public class CrosshairPickup : MonoBehaviour
         }
 
         heldObject.transform.SetParent(holdPoint);
-        /*heldObject.transform.localPosition = new Vector3(holdPoint.transform.localPosition.y *
-            heldObject.transform.localPosition.x, holdPoint.transform.localPosition.z * Time.deltaTime);*/
     }
 
     /// <summary>

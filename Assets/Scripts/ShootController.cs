@@ -5,11 +5,11 @@
 //
 // Brief Description : Handles simple shooting using Player Input system.
 **********************************************************************************************************************/
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ShootController : MonoBehaviour
 {
@@ -17,6 +17,7 @@ public class ShootController : MonoBehaviour
     [SerializeField] private float shootForce;
     [SerializeField] private float bulletHeight;
     [SerializeField] private float destroyTimeBullet;
+
     private InputAction shoot;
 
     [SerializeField] private List<GameObject> spawnedBullets = new List<GameObject>();
@@ -59,6 +60,11 @@ public class ShootController : MonoBehaviour
         StartCoroutine(DestroyBullet(newBullet));
     }
 
+    /// <summary>
+    /// When called waits for set time then, destroys and remove the Bullets
+    /// </summary>
+    /// <param name="newBullet"></param>
+    /// <returns></returns>
     IEnumerator DestroyBullet(GameObject newBullet)
     {
         yield return new WaitForSeconds(destroyTimeBullet);
