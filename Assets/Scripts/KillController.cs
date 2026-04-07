@@ -3,12 +3,23 @@
 // Author : Darryn C. Gorman
 // Creation Date : March 26, 2026
 //
-// Brief Description : Handles simple destroy mechanic when collision with tag.
+// Brief Description : Handles simple destroy mechanic when collision with tag, and send that to the gamemanager to
+                       keep track of how many objects been destroyed.
 **********************************************************************************************************************/
 using UnityEngine;
 
 public class KillController : MonoBehaviour
 {
+    private GameManager gm;
+
+    /// <summary>
+    /// Finds and set gm to the GameManager script
+    /// </summary>
+    private void Start()
+    {
+        gm = FindFirstObjectByType<GameManager>();
+    }
+
     /// <summary>
     /// Called when this object collides with another object
     /// </summary>
