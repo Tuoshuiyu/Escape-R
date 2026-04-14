@@ -18,7 +18,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float playerSpeed;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    /// <summary>
+    /// Sets the functions/fields at the start 
+    /// </summary>
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -51,7 +53,9 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    // Update is called once per frame
+    /// <summary>
+    /// Every frame updates the movement directions and rigidbody 
+    /// </summary>
     void Update()
     {
         Vector3 moveDirection = transform.right * playerMovement.x + transform.forward * playerMovement.z;

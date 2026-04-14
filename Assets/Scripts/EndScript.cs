@@ -3,7 +3,7 @@
 // Author : Darryn C. Gorman
 // Creation Date : April 1, 2026
 //
-// Brief Description : Quits the game in build version and stops editior in untiy
+// Brief Description : Quits the game in build version and stops editior in untiy and holds the start menu functions
 **********************************************************************************************************************/
 using UnityEditor;
 using UnityEngine;
