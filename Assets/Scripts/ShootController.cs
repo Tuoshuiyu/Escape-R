@@ -17,6 +17,7 @@ public class ShootController : MonoBehaviour
     [SerializeField] private float shootForce;
     [SerializeField] private float bulletHeight;
     [SerializeField] private float destroyTimeBullet;
+    [SerializeField] private Transform shootPosition;
 
     private InputAction shoot;
 

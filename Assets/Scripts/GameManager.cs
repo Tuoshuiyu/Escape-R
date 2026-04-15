@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    #region
+    #region Enemy Functions
 
     /// <summary>
     /// Adds collectables then checks if the requirement is meet and peforms the statement for all the enemies

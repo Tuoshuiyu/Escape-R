@@ -5338,9 +5338,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1938618801494925636, guid: 38b3bc4c4704b1945bb9125b52a02a2f, type: 3}
-  shootForce: 25
+  shootForce: 30
   bulletHeight: 0.5
-  destroyTimeBullet: 1
+  destroyTimeBullet: 2
+  shootPosition: {fileID: 1362252749}
   spawnedBullets: []
 --- !u!1001 &864616495
 PrefabInstance:
@@ -5807,7 +5808,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 395329638206632254, guid: 2af094781191c1347ba4ce63a5ebbe88, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 395329638206632254, guid: 2af094781191c1347ba4ce63a5ebbe88, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6193,7 +6194,7 @@ PrefabInstance:
     - target: {fileID: 23430031505414554, guid: 2e23bb932cf4ec7498eb4b727d9113fa, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 5abb3d18170c7cc4b8ce3577ef8b5ed8, type: 2}
+      objectReference: {fileID: 2100000, guid: 4930c6ffa5b9b9f4098249a43abf8506, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6875,7 +6876,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tutorial (Level 0)\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n"
+  m_text: "Level 0\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
