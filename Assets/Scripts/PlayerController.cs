@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Sets the functions/fields at the start 
     /// </summary>
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
 

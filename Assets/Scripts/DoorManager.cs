@@ -3,13 +3,16 @@
 // Author : Darryn C. Gorman
 // Creation Date : April 1, 2026
 //
-// Brief Description : Handles the portal for the player to enter to go to next level.
+// Brief Description : Handles the VR headset for the player to enter to go to next level, with changing color from
+                       red to green.
 **********************************************************************************************************************/
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DoorManager : MonoBehaviour
 {
+    [SerializeField] private Material greenVR;
     private bool enemiesDestroyed;
 
     /// <summary>
@@ -17,7 +20,7 @@ public class DoorManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        enemiesDestroyed = false;
+        enemiesDestroyed = false;  
     }
 
     /// <summary>
@@ -31,15 +34,15 @@ public class DoorManager : MonoBehaviour
             SceneManager.LoadScene(0);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            
         }
     }
 
     /// <summary>
-    /// When called sets the bool to true
+    /// When called sets the bool to true and changes the color
     /// </summary>
     public void allEniemesGone()
     {
         enemiesDestroyed = true;
+        GetComponent<Renderer>().material = greenVR;
     }
 }

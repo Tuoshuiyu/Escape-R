@@ -26,13 +26,23 @@ public class KillController : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
+        //For the enemy that spawns a platform
+        if (collision.gameObject.CompareTag("Platform(Enemy)"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+
+            gm.EnemyDestroyed();
+            gm.PlatformSpawn();
+        }
+
+        //So that any enemy can't spawn the platform
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            // Destroy the enemy
             Destroy(collision.gameObject);
-
-            // Destroy this projectile
             Destroy(gameObject);
+
+            gm.EnemyDestroyed();
         }
     }
 }

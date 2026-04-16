@@ -7,6 +7,7 @@
 **********************************************************************************************************************/
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndScript : MonoBehaviour
 {
@@ -22,5 +23,15 @@ public class EndScript : MonoBehaviour
         //Quits when in a build
         Application.Quit();
 #endif
+    }
+
+    /// <summary>
+    /// Goes to the next scene in the build list | +1
+    /// </summary>
+    public void NextScene()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }

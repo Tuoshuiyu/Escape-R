@@ -14,7 +14,7 @@ public class MoveCamera : MonoBehaviour
     /// <summary>
     /// Sets the position to be the players head every frame
     /// </summary>
-    void Update()
+    private void Update()
     {
         transform.position = headPos.position;
     }

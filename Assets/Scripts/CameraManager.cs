@@ -25,7 +25,7 @@ public class CameraManager : MonoBehaviour
     /// <summary>
     /// Hides the cursor, locks it and sets the x and y to equal the x and y rotation
     /// </summary>
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

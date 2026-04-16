@@ -24,12 +24,21 @@ public class ShootController : MonoBehaviour
     [SerializeField] private List<GameObject> spawnedBullets = new List<GameObject>();
 
     /// <summary>
-    /// Sets the shoot with the unity inputSystem
+    /// Every time scripts becomes active shoot is enable and set
     /// </summary>
-    void Start()
+    private void OnEnable()
     {
         shoot = InputSystem.actions.FindAction("Attack");
-        shoot.performed += ShootPerformed;
+
+        if (shoot != null) { shoot.performed += ShootPerformed; }
+    }
+
+    /// <summary>
+    /// Every time script becomes inactive shoot is disable
+    /// </summary>
+    private void OnDisable()
+    {
+        if (shoot != null) { shoot.performed -= ShootPerformed; } 
     }
 
     /// <summary>
