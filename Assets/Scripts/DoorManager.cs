@@ -31,7 +31,8 @@ public class DoorManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && enemiesDestroyed == true)
         {
-            SceneManager.LoadScene(0);
+            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            SceneManager.LoadScene(nextSceneIndex);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
