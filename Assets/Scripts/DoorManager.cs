@@ -6,7 +6,6 @@
 // Brief Description : Handles the VR headset for the player to enter to go to next level, with changing color from
                        red to green.
 **********************************************************************************************************************/
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,7 +19,7 @@ public class DoorManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        enemiesDestroyed = false;  
+        enemiesDestroyed = false;
     }
 
     /// <summary>
