@@ -9,7 +9,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class ShootController : MonoBehaviour
 {
@@ -17,7 +16,6 @@ public class ShootController : MonoBehaviour
     [SerializeField] private float shootForce;
     [SerializeField] private float bulletHeight;
     [SerializeField] private float destroyTimeBullet;
-    [SerializeField] private Transform shootPosition;
 
     private InputAction shoot;
 
@@ -51,7 +49,7 @@ public class ShootController : MonoBehaviour
     }
 
     /// <summary>
-    /// Spawns and shoots a buller forward
+    /// Spawns and shoots a bullet forward from the middle of the screen (crosshair) using raycast
     /// </summary>
     private void Fire()
     {
@@ -59,7 +57,7 @@ public class ShootController : MonoBehaviour
         spawnedBullets.Add(newBullet);
 
         // Set position slightly in front of player
-        newBullet.transform.position = transform.position + transform.forward * 0.6f + Vector3.up * bulletHeight;
+        newBullet.transform.position = transform.position + transform.forward * 0.6f + Vector3.forward * bulletHeight;
 
         // Match player rotation
         newBullet.transform.rotation = transform.rotation;

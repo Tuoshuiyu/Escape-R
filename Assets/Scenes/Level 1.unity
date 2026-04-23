@@ -3459,7 +3459,6 @@ MonoBehaviour:
   shootForce: 30
   bulletHeight: 0.5
   destroyTimeBullet: 2
-  shootPosition: {fileID: 1362252749}
   spawnedBullets: []
 --- !u!114 &860518648
 MonoBehaviour:
