@@ -57,7 +57,7 @@ public class ShootController : MonoBehaviour
         spawnedBullets.Add(newBullet);
 
         // Set position slightly in front of player
-        newBullet.transform.position = transform.position + transform.forward * 0.6f + Vector3.forward * bulletHeight;
+        newBullet.transform.position = transform.position + transform.forward * 0.6f + Vector3.up * bulletHeight;
 
         // Match player rotation
         newBullet.transform.rotation = transform.rotation;

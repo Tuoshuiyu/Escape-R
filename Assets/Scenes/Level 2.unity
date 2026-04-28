@@ -1280,7 +1280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4855193289971172, guid: 2e23bb932cf4ec7498eb4b727d9113fa, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 6.82
       objectReference: {fileID: 0}
     - target: {fileID: 4855193289971172, guid: 2e23bb932cf4ec7498eb4b727d9113fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3458,7 +3458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1938618801494925636, guid: 38b3bc4c4704b1945bb9125b52a02a2f, type: 3}
   shootForce: 30
-  bulletHeight: 0.5
+  bulletHeight: 0.9
   destroyTimeBullet: 2
   spawnedBullets: []
 --- !u!114 &860518648

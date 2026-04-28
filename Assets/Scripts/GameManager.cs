@@ -84,6 +84,8 @@
         /// </summary>
         public void EnemyDestroyed()
         {
+            //Level 1 
+
             collectables++;
         
             if(collectables == 1)
@@ -112,6 +114,11 @@
         public void PlatformSpawn()
         {
             platform1.gameObject.SetActive(true);
+        }
+
+        public void LevelOneEnemies()
+        {
+
         }
 
     #endregion
