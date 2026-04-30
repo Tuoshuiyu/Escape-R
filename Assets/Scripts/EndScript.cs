@@ -3,11 +3,10 @@
 // Author : Darryn C. Gorman
 // Creation Date : April 1, 2026
 //
-// Brief Description : Quits the game in build version and stops editior in untiy and holds the start menu functions
+// Brief Description : Quits the game in build version and stops editior in untiy 
 **********************************************************************************************************************/
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EndScript : MonoBehaviour
 {
@@ -23,15 +22,5 @@ public class EndScript : MonoBehaviour
         //Quits when in a build
         Application.Quit();
 #endif
-    }
-
-    /// <summary>
-    /// Goes to the next scene in the build list | +1
-    /// </summary>
-    public void NextScene()
-    {
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
-        SceneManager.LoadScene(nextSceneIndex);
     }
 }

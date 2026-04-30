@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Platform(Enemy)
   - Tutorial
+  - Bullet
   layers:
   - Default
   - TransparentFX

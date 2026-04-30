@@ -1,5 +1,5 @@
 /**********************************************************************************************************************
-// File Name : ShootController.cs
+// File Name : KillController.cs
 // Author : Darryn C. Gorman
 // Creation Date : March 26, 2026
 //
@@ -26,16 +26,6 @@ public class KillController : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
-        //For the enemy that spawns a platform
-        if (collision.gameObject.CompareTag("Platform(Enemy)"))
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-
-            gm.EnemyDestroyed();
-            gm.PlatformSpawn();
-        }
-
         //So that any enemy can't spawn the platform
         if (collision.gameObject.CompareTag("Enemy"))
         {

@@ -15,6 +15,7 @@ public class CrosshairPickup : MonoBehaviour
     [SerializeField] private float range;
     [SerializeField] private Image crosshair;
     [SerializeField] private Transform holdPoint;
+    [SerializeField] private AudioSource pickupSound;
 
     //Default and when looking at target color
     private Color normalColor = Color.white;
@@ -57,6 +58,7 @@ public class CrosshairPickup : MonoBehaviour
         if (currentPickup != null)
         {
             PickUpObject(currentPickup);
+            pickupSound.Play();
         }
     }
 

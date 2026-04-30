@@ -16,6 +16,7 @@ public class ShootController : MonoBehaviour
     [SerializeField] private float shootForce;
     [SerializeField] private float bulletHeight;
     [SerializeField] private float destroyTimeBullet;
+    [SerializeField] private AudioSource shootSound;
 
     private InputAction shoot;
 
@@ -46,6 +47,7 @@ public class ShootController : MonoBehaviour
     private void ShootPerformed(InputAction.CallbackContext obj)
     {
         Fire();
+        shootSound.Play();
     }
 
     /// <summary>

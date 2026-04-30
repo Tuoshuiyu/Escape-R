@@ -1,5 +1,5 @@
 /**********************************************************************************************************************
-// File Name : LifeManager.cs
+// File Name : VoidManager.cs
 // Author : Darryn C. Gorman
 // Creation Date : April 21, 2026
 //
