@@ -7,6 +7,7 @@
                        gameManager script to check track of enemies.
 **********************************************************************************************************************/
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlatformSpawn : MonoBehaviour
 {
@@ -35,10 +36,16 @@ public class PlatformSpawn : MonoBehaviour
     }
 
     /// <summary>
-    /// When destroyed activateds the platform 
+    /// When destroyed activateds the platform and checks if scene is active
     /// </summary>
     private void OnDestroy()
     {
-        platform.SetActive(true);
+        Scene activeScene = SceneManager.GetActiveScene();
+
+        if (activeScene.isLoaded)
+        {
+            platform.SetActive(true);
+        }
+        
     }
 }
