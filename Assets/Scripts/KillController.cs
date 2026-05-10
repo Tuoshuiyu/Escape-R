@@ -7,17 +7,20 @@
                        keep track of how many objects been destroyed.
 **********************************************************************************************************************/
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KillController : MonoBehaviour
 {
     private GameManager gm;
+    private TutorialManager Tgm;
 
     /// <summary>
-    /// Finds and set gm to the GameManager script
+    /// Finds and set gm to the GameManager script and Tgm to TutorialManager script
     /// </summary>
     private void Start()
     {
         gm = FindFirstObjectByType<GameManager>();
+        Tgm = FindFirstObjectByType<TutorialManager>();
     }
 
     /// <summary>
@@ -26,13 +29,21 @@ public class KillController : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
-        //So that any enemy can't spawn the platform
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
             Destroy(gameObject);
 
-            gm.EnemyDestroyed();
+            if (SceneManager.GetActiveScene().buildIndex >= 3 &&
+            SceneManager.GetActiveScene().buildIndex <= 5)
+            {
+                gm.EnemyDestroyed();
+            }
+        } 
+
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            Tgm.StepTwo();
         }
     }
 }

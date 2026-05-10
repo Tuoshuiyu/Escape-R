@@ -54,7 +54,12 @@ public class GameManager : MonoBehaviour
             levelTwo = true;
             enemyRemain.text = "Find & Shoot red boxes\r\n- 3 remaining";
         }
-            levelThree = false;
+
+        if (SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            levelThree = true;
+            enemyRemain.text = "Find & Shoot red boxes\r\n- 4 remaining";
+        }
         
         #endregion
     }
@@ -118,6 +123,24 @@ public class GameManager : MonoBehaviour
             if (collectables == 2) { enemyRemain.text = "Find & Shoot red boxes\r\n- 1 remaining"; }
 
             if (collectables == 3)
+            {
+                enemyRemain.text = "Find & Shoot red boxes\r\n- 0 remaining";
+                enemyRemain.color = Color.green;
+
+                doorManager.allEniemesGone();
+                doorOpen.text = "Collect the VR Headset - Unlocked\r\n<s>- Completed other objectives to unlock";
+                doorOpen.color = Color.green;
+            }
+        }
+
+        //Level 3
+        if (levelThree == true)
+        {
+            if (collectables == 1) { enemyRemain.text = "Find & Shoot red boxes\r\n- 3 remaining"; }
+            if (collectables == 2) { enemyRemain.text = "Find & Shoot red boxes\r\n- 2 remaining"; }
+            if (collectables == 3) { enemyRemain.text = "Find & Shoot red boxes\r\n- 1 remaining"; }
+
+            if (collectables == 4)
             {
                 enemyRemain.text = "Find & Shoot red boxes\r\n- 0 remaining";
                 enemyRemain.color = Color.green;

@@ -13,6 +13,7 @@ TagManager:
   - Platform(Enemy)
   - Tutorial
   - Bullet
+  - StepOne
   layers:
   - Default
   - TransparentFX

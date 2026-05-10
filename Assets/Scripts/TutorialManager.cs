@@ -5,23 +5,60 @@
 //
 // Brief Description : Handles all the tutorial functions and blue door to allow the player to learn how to play.
 **********************************************************************************************************************/
+using TMPro;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI tutorialText;
+    [SerializeField] private TextMeshProUGUI topObjective;
+
+    private bool stepTwoR = false;
+
+    private DoorManager doorManager;
+
     /// <summary>
-    /// Loads tutorial scene when collide with the door with the player 
+    /// At the start sets the text to tell the player how to use pickup mechanic | Set dorrmanager with its script
+    /// </summary>
+    void Start()
+    {
+        tutorialText.text = "Pickup Plank to go to next platform\r\n- Shift Pickup -Shift Again Drop";
+        doorManager = FindFirstObjectByType<DoorManager>();
+    }
+
+    /// <summary>
+    /// When the player reaches the platform the next step begins | Set stepTwoR to true for now repeat
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("StepOne") && stepTwoR == false)
         {
-            SceneManager.LoadScene(2);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            tutorialText.text = "Destory The Red Box\r\n- Space to Shoot";
+            stepTwoR = true;
         }
+    }
+    
+    /// <summary>
+    /// Introduces and changes the text to show the player the different boxes(enemies)
+    /// </summary>
+    public void StepTwo()
+    {
+        tutorialText.text = "Destroy The Red Box With the ! For A Suprise\r\n- Space to Shoot";
+    }
+    
+    /// <summary>
+    /// Changes the text to explain to the player how to pickup again and complete a level
+    /// </summary>
+    public void StepThree()
+    {
+        tutorialText.text = "Use the Stair and Collect the Vr Headset\r\n- Shift Pickup \r\n- Shift Again Drop";
+
+        doorManager.allEniemesGone();
+        topObjective.text = "Collect the VR Headset - Unlocked\r\n<s>- Tutorial Completed";
+        topObjective.color = Color.green;
     }
 
 }

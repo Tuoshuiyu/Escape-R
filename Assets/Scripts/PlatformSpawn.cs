@@ -12,27 +12,42 @@ using UnityEngine.SceneManagement;
 public class PlatformSpawn : MonoBehaviour
 {
     private GameManager gm;
+    private TutorialManager Tgm;
     [SerializeField] private GameObject platform;
 
     /// <summary>
-    /// Finds and set gm to the GameManager script | Sets the platforms to false
+    /// Finds and set gm and Tgm to their scripts | Sets the platforms to false
     /// </summary>
     private void Start()
     {
         gm = FindFirstObjectByType<GameManager>();
+        Tgm = FindFirstObjectByType<TutorialManager>();
         platform.SetActive(false);
     }
 
     /// <summary>
-    /// When collided with a bullet it get destroyed and calls the gm script to add to counter
+    /// When collided with a bullet it get destroyed and calls the gm script to add to counter 
+    /// Calls stepThree in tutorial
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(collision.gameObject);
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
 
-        gm.EnemyDestroyed();
+            if (SceneManager.GetActiveScene().buildIndex >= 3 &&
+            SceneManager.GetActiveScene().buildIndex <= 5)
+            {
+                gm.EnemyDestroyed();
+            }
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            Tgm.StepThree();
+        }
     }
 
     /// <summary>
