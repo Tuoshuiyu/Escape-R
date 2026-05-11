@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI enemyRemain;
     [SerializeField] private TextMeshProUGUI doorOpen;
+    [SerializeField] private GameObject pause;
         
     private int collectables;
     private DoorManager doorManager;
+    private CameraManager cGM;
 
     private bool levelOne = false;
     private bool levelTwo = false;
@@ -27,7 +29,7 @@ public class GameManager : MonoBehaviour
     private InputAction exit;
 
     /// <summary>
-    /// At the start of the scene all fields are set and enable | Sets the bools for each level when on that level
+    /// At the start of the scene all fields are set and enable and Sets the bools for each level when on that level
     /// </summary>
     private void Start()
     {
@@ -38,8 +40,11 @@ public class GameManager : MonoBehaviour
         exit.performed += ExitPerformed;
 
         doorManager = FindFirstObjectByType<DoorManager>();
+        cGM = FindFirstObjectByType<CameraManager>();
 
         collectables = 0;
+
+        pause.SetActive(false);
 
         #region Current Level Quest Functions
 
@@ -73,12 +78,14 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Quits/Exits the game when playing 
+    /// Set the pause menu and true and stops time
     /// </summary>
     /// <param name="obj"></param>
     private void ExitPerformed(InputAction.CallbackContext obj)
     {
-        Application.Quit();
+        pause.SetActive(true);
+        cGM.ToggleCrosshair();
+        Time.timeScale = 0f;
     }
 
     /// <summary>
@@ -88,6 +95,16 @@ public class GameManager : MonoBehaviour
     private void RestartPerformed(InputAction.CallbackContext obj)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    /// <summary>
+    /// Sets the time back to normal and disables the pause
+    /// </summary>
+    public void ExitPause()
+    {
+        pause.SetActive(false);
+        cGM.ReenableCrosshiar();
+        Time.timeScale = 1f;
     }
 
     #region Enemy Functions

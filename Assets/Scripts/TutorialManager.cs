@@ -6,9 +6,7 @@
 // Brief Description : Handles all the tutorial functions and blue door to allow the player to learn how to play.
 **********************************************************************************************************************/
 using TMPro;
-using UnityEditor.EditorTools;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -20,7 +18,7 @@ public class TutorialManager : MonoBehaviour
     private DoorManager doorManager;
 
     /// <summary>
-    /// At the start sets the text to tell the player how to use pickup mechanic | Set dorrmanager with its script
+    /// At the start sets the text to tell the player how to use pickup mechanic and Set dorrmanager with its script
     /// </summary>
     void Start()
     {
@@ -29,7 +27,7 @@ public class TutorialManager : MonoBehaviour
     }
 
     /// <summary>
-    /// When the player reaches the platform the next step begins | Set stepTwoR to true for now repeat
+    /// When the player reaches the platform the next step begins and Set stepTwoR to true for now repeat
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)

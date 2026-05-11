@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class TutorialDoor : MonoBehaviour
 {
     /// <summary>
-    /// Loads tutorial scene when collide with the door with the player | Loads level select when going back
+    /// Loads tutorial scene when collide with the door with the player and Loads level select when going back
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)

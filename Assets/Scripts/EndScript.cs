@@ -25,11 +25,12 @@ public class EndScript : MonoBehaviour
 #endif
     }
 
-    public void Restart()
+    /// <summary>
+    /// Loads the main menu screen and set the time back to normal
+    /// </summary>
+    public void RestartGame()
     {
-        //Calculate the next index, but reset to 0 if it exceeds the total count
-        int nextSceneIndex = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
-
-        SceneManager.LoadScene(nextSceneIndex);
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1.0f;
     }
 }

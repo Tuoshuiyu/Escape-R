@@ -52,4 +52,22 @@ public class CameraManager : MonoBehaviour
         orientation.rotation = Quaternion.Euler(0, yValue, 0);
         playerBody.rotation = Quaternion.Euler(0, yValue, 0);
     }
+
+    /// <summary>
+    /// Set the cursor to normal when called 
+    /// </summary>
+    public void ToggleCrosshair()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    /// <summary>
+    /// Reenable the lock cursor and makes it no longet visable
+    /// </summary>
+    public void ReenableCrosshiar()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 }

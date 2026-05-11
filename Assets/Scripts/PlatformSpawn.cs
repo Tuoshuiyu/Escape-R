@@ -16,7 +16,7 @@ public class PlatformSpawn : MonoBehaviour
     [SerializeField] private GameObject platform;
 
     /// <summary>
-    /// Finds and set gm and Tgm to their scripts | Sets the platforms to false
+    /// Finds and set gm and Tgm to their scripts and Sets the platforms to false
     /// </summary>
     private void Start()
     {
