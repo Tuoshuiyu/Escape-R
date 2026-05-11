@@ -31,6 +31,6 @@ public class EndScript : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
-        Time.timeScale = 1.0f;
+        Time.timeScale = 1f;
     }
 }
